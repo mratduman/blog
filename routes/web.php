@@ -14,3 +14,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'Front\Home@index')->name('home');
+Route::get('/{category}/{slug}', 'Front\Home@singleArticle')->name('single_article');

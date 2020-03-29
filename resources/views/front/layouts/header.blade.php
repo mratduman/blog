@@ -47,14 +47,14 @@
   </nav>
 
   <!-- Page Header -->
-  <header class="masthead" style="background-image: url('{{ asset('front/') }}/img/bg-img.jpg')">
+  <header class="masthead" style="background-image: url(@yield('bg_img'))">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="site-heading">
-            <h4>Pyotr Alekseyev</h4>
-            <span class="subheading">kehânetinin izinden</span>
+            <h4>@yield('title')</h4>
+            <span class="subheading">@yield('sub_title')</span>
           </div>
         </div>
       </div>
