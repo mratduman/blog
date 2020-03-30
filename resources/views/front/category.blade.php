@@ -1,7 +1,7 @@
 @extends('front.layouts.master')
-@section('title','Pyotr Alekseyev')
-@section('sub_title','kehânetinin izinden')
-@section('bg_img',asset('front/')."/img/bg-img.jpg")
+@section('title',$category->name)
+@section('sub_title','kirpi balığının ısırmasıyla oscarın uçuşu')
+@section('bg_img',asset('front/')."/img/".$category->slug.".jpg")
 @section('content')
 <!-- widgets -->
 @include('front.widgets.category')

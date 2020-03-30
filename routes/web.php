@@ -1,17 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
+// Front
 Route::get('/', 'Front\Home@index')->name('home');
+Route::get('/contact', 'Front\Home@contact')->name('contact');
+Route::post('/contact', 'Front\Home@contactPost')->name('contact_post');
+
+Route::get('/category/{category}', 'Front\Home@category')->name('category');
+
 Route::get('/{category}/{slug}', 'Front\Home@singleArticle')->name('single_article');
+Route::get('/{page}', 'Front\Home@page')->name('page');
