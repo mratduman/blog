@@ -6,9 +6,11 @@
       </div>
       <div class="list-group">
         @foreach ($categories as $c)
-          <li class="list-group-item">
-            <a href="{{ route('category',$c->slug) }}">{{ $c["name"] }}</a> <span class="badge float-right">{{ $c->articleCount() }}</span>
-          </li>
+          @if ($c->articleCount()>0)
+            <li class="list-group-item">
+              <a href="{{ route('category',$c->slug) }}">{{ $c["name"] }}</a> <span class="badge float-right">{{ $c->articleCount() }}</span>
+            </li>
+          @endif
         @endforeach
       </div>
     </div>

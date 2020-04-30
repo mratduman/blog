@@ -1,12 +1,12 @@
 @extends('back.layouts.master')
-@section('title','Yazılar')
+@section('title','Silinen Yazılar')
 <div id="indexArticles">
   @section('content')
     <div class="card shadow mb-4">
       <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary"><strong>{{ $articles->count() }}</strong> Yazı Listelendi
           <span class="float-right">
-            <a href="{{ route('admin.trashed_article') }}" class="btn btn-sm btn-warning">Silinenler</a>
+            <a href="{{ route('admin.articles.index') }}" class="btn btn-sm btn-warning">Mevcutlar</a>
           </span>
         </h6>
       </div>
@@ -20,7 +20,6 @@
                 <th>Kategori</th>
                 <th>Hit</th>
                 <th>Tarih</th>
-                <th>Durum</th>
                 <th>İşlemler</th>
               </tr>
             </thead>
@@ -35,16 +34,8 @@
                   <td>{{ $article->hit }}</td>
                   <td>{{ $article->created_at->diffforHumans() }}</td>
                   <td>
-                    @php
-                      $status = str_replace("1","<span class='text-success'>Aktif</span>",$article->active);
-                      $status = str_replace("0","<span class='text-danger'>Pasif</span>",$status);
-                    @endphp
-                    {!! $status !!}
-                  </td>
-                  <td>
-                    <a href="{{ route('single_article',[$article->getCategory->slug,$article->slug]) }}" target="_blank" title="Aç" class="btn btn-sm btn-success"><i class="fa fa-eye"></i></a>
                     <a href="{{ route('admin.articles.edit',$article->id) }}" title="Düzenle" class="btn btn-sm btn-primary"><i class="fa fa-pen"></i></a>
-                    <button type="button" onclick="delete_article_modal({{ $article->id }})" title="Sil" class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button>
+                    <button type="button" onclick="publish_post({{ $article->id }})" title="Yayınla" class="btn btn-sm btn-success"><i class="fa fa-history"></i></button>
                   </td>
                 </tr>
               @endforeach
@@ -54,16 +45,9 @@
       </div>
     </div>
     <script type="text/javascript">
-      function delete_article_modal(id) {
-        $("#deleteId").val(null);
-        $("#deleteId").val(id);
-        $("#deleteModal").modal("show");
-      }
-      function deletion_confirmation() {
-        var id = $("#deleteId").val();
-        $.get("{{ route('admin.delete_article') }}", { id:id }, function (message) {
-          $("#deleteModal").modal("hide");
-          if (message=="Silindi") {
+      function publish_post(id) {
+        $.get("{{ route('admin.publish_article') }}", { id:id }, function (message) {
+          if (message=="Yayinlandi") {
             $("#row_"+id).html(null);
           }else {
             alert("Olmadı.");

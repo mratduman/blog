@@ -1,7 +1,7 @@
 @extends('front.layouts.master')
-@section('title',$article->title)
+@section('title',"$article->title")
 @section('sub_title','')
-@section('bg_img',$article->image)
+@section('bg_img',"../$article->image")
 @section('content')
 @include('front.widgets.category')
 <div class="col-lg-8 col-md-9 mx-auto">

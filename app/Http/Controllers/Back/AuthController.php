@@ -17,6 +17,7 @@ class AuthController extends Controller
     public function loginPost(Request $request)
     {
       if (Auth::attempt(['email'=>$request->email,'password'=>$request->password])) {
+        toastr()->success('Hoşgeldin '.Auth::user()->name);
         return redirect(route('admin.dashboard'));
       }else {
         return redirect(route('admin.login'))->withErrors('Email yada sifre uyumsuz!');

@@ -1,7 +1,7 @@
 @extends('front.layouts.master')
-@section('title',$category->name)
-@section('sub_title','kirpi balığının ısırmasıyla oscarın uçuşu')
-@section('bg_img',asset('front/')."/img/".$category->slug.".jpg")
+@section('title',"$category->name")
+@section('sub_title',"$category->slogan")
+@section('bg_img',asset('front/')."/img/".$category->image)
 @section('content')
 <!-- widgets -->
 @include('front.widgets.category')

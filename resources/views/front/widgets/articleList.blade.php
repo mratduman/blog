@@ -6,15 +6,15 @@
           <h2 class="post-title">
             {{ $article->title }}
           </h2>
-          <img src="{{ $article->image }}">
-          <h3 class="post-subtitle">
-            {!! Str::limit($article->content,100) !!}
-          </h3>
-        </a>
-        <p class="post-meta">
-          Kategori: <a href="#">{{ $article->getCategory->name }}</a>
+          <img src="../{{ $article->image }}" style="width:90%;height:auto;"><br>
+          <!--<h3 class="post-subtitle">
+            <?php /* {!! Str::limit($article->content,200) !!} */ ?>
+          </h3>-->
+        </a><br>
+        <h6 class="post-subtitle">
+          Kategori: {{ $article->getCategory->name }}
           <span class="float-right">{{ $article->created_at->diffforHumans() }}</span>
-        </p>
+        </h6>
       </div>
       <hr>
     @endforeach
@@ -25,7 +25,7 @@
     </div>
   @else
     <div class="alert alert-danger">
-      Bu kategoriye ait herhangi bir yazı bulunamadı.
+      Herhangi bir yazı bulunamadı.
     </div>
   @endif
 </div>
